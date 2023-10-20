@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - main
+      - staging
 
 env:
   PROJECT_ID: ${{ vars.CLOUD_RUN_PROJECT_NAME }}
@@ -73,7 +74,6 @@ jobs:
       - name: Build and tag the docker image
         run: |-
           cd backend
-          echo ${{ secrets.PRODUCTION_FIREBASE_SERVICE_ACCOUNT }} >> serviceAccount.json
           docker build . --tag gcr.io/$PROJECT_ID/$SERVICE_NAME_BACK_END:$GITHUB_SHA
 
       - name: Push the image to the Google Container Registry (GCR)
