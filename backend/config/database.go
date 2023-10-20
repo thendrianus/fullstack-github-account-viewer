@@ -15,7 +15,7 @@ func ConnectDB() (context.Context, *firestore.Client) {
 	ctx := context.Background()
 
 	credPath := "./serviceAccount.dev.json"
-	if os.Getenv("GITHUB_OAUTH_CLIENT_ID") == "PRODUCTION" {
+	if os.Getenv("APP_ENV") == "PRODUCTION" {
 		credPath = "./serviceAccount.json"
 	}
 	sa := option.WithCredentialsFile(credPath)
