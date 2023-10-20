@@ -71,6 +71,11 @@ jobs:
       - name: Authorize Docker push
         run: gcloud auth configure-docker
 
+      - name: Create Google Services JSON File
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.PRODUCTION_FIREBASE_SERVICE_ACCOUNT }}
+        run: echo $GOOGLE_SERVICES_JSON | base64 -di > ./backend/serviceAccount.json
+
       - name: Build and tag the docker image
         run: |-
           cd backend
