@@ -3,6 +3,7 @@ package config
 import (
 	"context"
 	"log"
+	"os"
 
 	"cloud.google.com/go/firestore"
 	firebase "firebase.google.com/go"
@@ -12,7 +13,12 @@ import (
 func ConnectDB() (context.Context, *firestore.Client) {
 	// Use a service account
 	ctx := context.Background()
-	sa := option.WithCredentialsFile("./serviceAccount.dev.json")
+
+	credPath := "./serviceAccount.dev.json"
+	if os.Getenv("GITHUB_OAUTH_CLIENT_ID") == "PRODUCTION" {
+		credPath = "./serviceAccount.json"
+	}
+	sa := option.WithCredentialsFile(credPath)
 	app, err := firebase.NewApp(ctx, nil, sa)
 	if err != nil {
 		log.Fatalln(err)
