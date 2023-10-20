@@ -1,0 +1,32 @@
+{
+  "name": "project-template",
+  "version": "1.0.0",
+  "description": "Wrapper package for formatting and linting purposes",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --config .prettierrc --write ./**/*.{html,ts,tsx,json,yml}",
+    "format:check": "prettier --config .prettierrc --check ./**/*.{html,ts,tsx,json,yml}",
+    "prepare": "node ./prepare.js",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{html,js,json,css}": [
+      "prettier  --config .prettierrc --write"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixel8labs/project-template.git"
+  },
+  "author": "Pixel8Labs <gm@pixel8labs.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/pixel8labs/project-template/issues"
+  },
+  "homepage": "https://github.com/pixel8labs/project-template#readme",
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
+    "prettier": "^2.6.0"
+  }
+}

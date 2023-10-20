@@ -1,0 +1,10 @@
+node_modules
+dist
+build/
+typechain/
+contracts/typechain-types/
+contracts/artifacts/
+contracts/cache/
+artifacts/
+.github
+cache/
